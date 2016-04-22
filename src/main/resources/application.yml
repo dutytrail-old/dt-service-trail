@@ -17,5 +17,5 @@ spring:
   cloud:
     config:
       profile: ${ARCH_ENV:heroku}
-      uri: ${CONF_URI:dt-arch-conf.herokuapp.com}
+      uri: ${CONF_URI:https://dt-arch-conf.herokuapp.com}
 
