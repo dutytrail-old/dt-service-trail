@@ -2,14 +2,15 @@ server:
   port: ${PORT:0}
 
 eureka:
+  instance:
+    preferIpAddress: true
+    nonSecurePort: ${PORT:0}
+    hostname: ${DOMAIN:localhost}
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URL}/eureka/
-  instance:
-    hostname: ${DOMAIN:localhost}
-    nonSecurePort: ${PORT:0}
-    metadataMap:
-      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 spring:
   application:
@@ -19,6 +20,7 @@ spring:
   cloud:
     config:
       profile: ${ARCH_ENV}
+      enabled: false
       discovery:
         enabled: true
         serviceId: dtarchconfig
