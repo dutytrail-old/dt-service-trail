@@ -13,10 +13,10 @@ spring:
   application:
     name: dtservicetemplate
   profiles:
-    active: ${ARCH_ENV:heroku}
+    active: ${ARCH_ENV}
   cloud:
     config:
-      profile: ${ARCH_ENV:heroku}
+      profile: ${ARCH_ENV}
       discovery:
         enabled: true
         serviceId: dtarchconfig
