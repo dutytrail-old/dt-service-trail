@@ -14,7 +14,7 @@ eureka:
 
 spring:
   application:
-    name: dtservicetemplate
+    name: dtserviceduty
   profiles:
     active: ${ARCH_ENV}
   cloud:
