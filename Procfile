@@ -1,1 +1,1 @@
-web: mvn spring-boot:run
+web: java $JAVA_OPTS -jar target/dt-service-template-*.jar --spring.profiles.active=heroku
