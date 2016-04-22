@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TemplateService {
 
-    @Value("${ping.alive}")
+//    @Value("${ping.alive}")
     private String configPingAlive;
 
     @RequestMapping("/ping")
