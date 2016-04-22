@@ -5,7 +5,7 @@ eureka:
   instance:
     preferIpAddress: true
     nonSecurePort: ${PORT:0}
-    hostname: ${DOMAIN}
+    hostname: ${DOMAIN:localhost}
     metadataMap:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
@@ -19,6 +19,5 @@ spring:
     active: ${ARCH_ENV}
   cloud:
     config:
-      discovery:
-        enabled: true
-        serviceId: dtarchconfig
+      profile: ${ARCH_ENV}
+      uri: ${CONF_URI:https://dt-arch-conf.herokuapp.com}
