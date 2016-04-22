@@ -20,7 +20,7 @@ spring:
   cloud:
     config:
       profile: ${ARCH_ENV}
-      enabled: false
+      enabled: true
       discovery:
         enabled: true
         serviceId: dtarchconfig
