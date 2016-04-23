@@ -25,7 +25,7 @@ public class Duty {
 
     private static void configureHystrix() {
         for (Method method : DutyService.class.getMethods()) {
-            ConfigurationManager.getConfigInstance().setProperty(String.format("hystrix.command.%s.execution.isolation.thread.timeoutInMilliseconds", method.getName()), 1500000);
+            ConfigurationManager.getConfigInstance().setProperty(String.format("hystrix.command.%s.execution.isolation.thread.timeoutInMilliseconds", method.getName()), 0);
         }
     }
 
