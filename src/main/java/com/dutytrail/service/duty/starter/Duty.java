@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAutoConfiguration
 @EnableEurekaClient
 @ComponentScan(basePackages = {"com.dutytrail.service.duty"})
-@EnableFeignClients(basePackages = {"com.dutytrail.service.duty"})
+@EnableFeignClients
 public class Duty {
 
     public static void main(String[] args) {
