@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,7 +17,7 @@ public class DutyService {
     @Value("${ping.alive}")
     private String configPingAlive;
 
-    @RequestMapping("/ping")
+    @RequestMapping(method = RequestMethod.GET, value = "/ping", produces = "application/json")
     public String ping() {
         return "Duty Service Alive. Profile in use: "+this.configPingAlive;
     }
