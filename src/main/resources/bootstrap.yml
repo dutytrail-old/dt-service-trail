@@ -14,7 +14,7 @@ eureka:
 
 spring:
   application:
-    name: dt-service-duty.herokuapp.com
+    name: dtserviceduty
   profiles:
     active: ${ARCH_ENV}
   cloud:
