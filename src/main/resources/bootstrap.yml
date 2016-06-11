@@ -12,7 +12,7 @@ eureka:
 
 spring:
   application:
-    name: dtserviceduty
+    name: dtservicetrail
   profiles:
     active: ${ARCH_ENV}
   cloud:
