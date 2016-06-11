@@ -4,16 +4,16 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dutytrail.service.duty</groupId>
-    <artifactId>dt-service-duty</artifactId>
+    <groupId>com.dutytrail.service.trail</groupId>
+    <artifactId>dt-service-trail</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Dutytrail - Service Duty</name>
+    <name>Dutytrail - Service Trail</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <start-class>com.dutytrail.service.duty.starter.Duty</start-class>
+        <start-class>com.dutytrail.service.trail.starter.Trail</start-class>
         <java.version>1.8</java.version>
         <feign.version>8.1.1</feign.version>
         <lombok.version>1.16.4</lombok.version>
@@ -141,12 +141,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Inner dependencies -->
-        <dependency>
-            <groupId>com.dutytrail.arch.lib</groupId>
-            <artifactId>dt-arch-lib</artifactId>
-            <version>1.0.2</version>
-        </dependency>
 
         <!--Third Parties -->
         <dependency>
