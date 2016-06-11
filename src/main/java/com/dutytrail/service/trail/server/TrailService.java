@@ -1,4 +1,4 @@
-package com.dutytrail.service.duty.server;
+package com.dutytrail.service.trail.server;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
