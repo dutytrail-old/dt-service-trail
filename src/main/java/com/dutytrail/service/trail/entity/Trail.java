@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @XmlRootElement(name = "Trail")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = {"userId","status"})
+@XmlType(propOrder = {"userId","status","timestamp"})
 public class Trail {
 
     @XmlElement(name = "userId") private Long userId;

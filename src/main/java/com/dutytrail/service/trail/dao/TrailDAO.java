@@ -9,15 +9,27 @@ import java.sql.*;
 import java.util.ArrayList;
 
 @Component
-public class TrailDAO extends BaseDAO {
+public class TrailDAO {
+
+    @Value("${db.driver}") private String driver;
+    @Value("${db.url}") private String url;
+    @Value("${db.schema}") private String schema;
+    @Value("${db.user}") private String user;
+    @Value("${db.password}") private String password;
 
     @Value("${sql.insert.trail}") private String postTrail;
     @Value("${sql.select.trail}") private String getTrail;
 
     public Long postTrail(Long userId, Long dutyId, Status status){
         PreparedStatement ps = null;
+        Connection con = null;
+
         try {
-            ps = super.con.prepareStatement(postTrail);
+            Class.forName(driver);
+            con = DriverManager.getConnection(url+schema, user, password);
+            con.setAutoCommit(false);
+
+            ps = con.prepareStatement(postTrail);
             ps.setLong(1, userId);
             ps.setLong(2, dutyId);
             ps.setString(3, status.getDescription());
@@ -25,7 +37,7 @@ public class TrailDAO extends BaseDAO {
             if(ps.executeUpdate()==1)
                 return dutyId;
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
@@ -43,9 +55,14 @@ public class TrailDAO extends BaseDAO {
     public ArrayList<Trail> getTrail(Long dutyId){
         PreparedStatement ps = null;
         ArrayList<Trail> trails = new ArrayList<>();
+        Connection con = null;
 
         try {
-            ps = super.con.prepareStatement(getTrail);
+            Class.forName(driver);
+            con = DriverManager.getConnection(url+schema, user, password);
+            con.setAutoCommit(false);
+
+            ps = con.prepareStatement(getTrail);
             ps.setLong(1, dutyId);
             ResultSet resultSet = ps.executeQuery();
 
@@ -54,7 +71,7 @@ public class TrailDAO extends BaseDAO {
             }
             return trails;
 
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
