@@ -15,19 +15,25 @@ class BaseDAO {
     @Value("${db.user}") private String user;
     @Value("${db.password}") private String password;
 
-    Connection con;
+    Connection con = null;
 
     @PostConstruct
-    public void initDAO(){
-        Connection con = null;
+    public void initConnection(){
         try {
-            Class.forName(driver);
-            con = DriverManager.getConnection(url+schema, user, password);
-            con.setAutoCommit(false);
-
-        } catch (SQLException | ClassNotFoundException e) {
+            if(this.con == null) {
+                Class.forName(driver).newInstance();
+                this.con = DriverManager.getConnection(url + schema, user, password);
+                this.con.setAutoCommit(false);
+            }
+        } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
+    }
+
+    void commitAndCloseAll(PreparedStatement ps, ResultSet resultSet) throws SQLException {
+        if(ps != null) ps.close();
+        if(resultSet != null) resultSet.close();
+        con.commit();
     }
 
 }
