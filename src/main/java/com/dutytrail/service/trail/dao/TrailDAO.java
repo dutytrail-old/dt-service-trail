@@ -13,6 +13,7 @@ public class TrailDAO extends BaseDAO{
 
     @Value("${sql.insert.trail}") private String postTrail;
     @Value("${sql.select.trail}") private String getTrail;
+    @Value("${sql.delete.trail}") private String deleteTrail;
 
     public Long postTrail(Long userId, Long dutyId, Status status){
         PreparedStatement ps = null;
@@ -63,5 +64,27 @@ public class TrailDAO extends BaseDAO{
             }
         }
         return trails;
+    }
+
+    public Long deleteTrail(Long dutyId){
+        PreparedStatement ps = null;
+
+        try {
+            ps = super.con.prepareStatement(deleteTrail);
+            ps.setLong(1, dutyId);
+
+            if(ps.executeUpdate()==1)
+                return dutyId;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                super.commitAndCloseAll(ps, null);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return -1L;
     }
 }

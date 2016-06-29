@@ -36,4 +36,9 @@ public class TrailService {
         return this.trailDAO.getTrail(dutyId);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/trail/{dutyId}", produces = MediaType.APPLICATION_JSON)
+    public Long delete(@PathVariable("dutyId") Long dutyId){
+        return this.trailDAO.deleteTrail(dutyId);
+    }
+
 }
