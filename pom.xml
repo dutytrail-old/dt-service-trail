@@ -27,7 +27,6 @@
 
     <build>
         <pluginManagement>
-
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -66,6 +65,11 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.7.201606060606</version>
             </plugin>
         </plugins>
     </build>
@@ -139,6 +143,7 @@
                 <artifactId>javax.ws.rs-api</artifactId>
                 <version>${javax.ws.rs.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -265,5 +270,21 @@
         </pluginRepository>
 
     </pluginRepositories>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

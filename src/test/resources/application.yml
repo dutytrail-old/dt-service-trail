@@ -1,0 +1,19 @@
+ping:
+  alive: Config properties loaded from LOCAL profile
+
+# DB CONNECTION /Users/joan/Documents/workarea/tools/PostgreSQL/9.5/bin/pg_ctl -D /Users/joan/Documents/workarea/tools/PostgreSQL/data start
+db:
+  url: jdbc:postgresql://localhost:5432/
+  schema: postgres
+  driver: org.postgresql.Driver
+  user: joan
+  password: 1234
+
+# SQL
+sql:
+  insert:
+    trail: insert into dt_trail_test(id, user_id, duty_id, status) values (nextval('dt_s_trail_id'), ?, ?, ?)
+  select:
+    trail: select user_id, status, change_date from dt_trail_test t where t.duty_id = ?
+  delete:
+    trail: delete from public.dt_trail_test where duty_id = ?
