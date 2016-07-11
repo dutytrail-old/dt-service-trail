@@ -18,20 +18,14 @@ class BaseDAO {
     Connection con = null;
 
     @PostConstruct
-    public void initConnection(){
-        try {
-            if(this.con == null) {
-                Class.forName(driver).newInstance();
-                this.con = DriverManager.getConnection(url + schema, user, password);
-                this.con.setAutoCommit(false);
-            }
-        } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
+    public void initConnection() throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+        Class.forName(driver).newInstance();
+        this.con = DriverManager.getConnection(url + schema, user, password);
+        this.con.setAutoCommit(false);
     }
 
     void commitAndCloseAll(PreparedStatement ps, ResultSet resultSet) throws SQLException {
-        if(ps != null) ps.close();
+        ps.close();
         if(resultSet != null) resultSet.close();
         con.commit();
     }

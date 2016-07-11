@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.ws.rs.core.MediaType;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @RestController
@@ -27,17 +28,17 @@ public class TrailService {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/trail/{userId}/{dutyId}/{status}", produces = MediaType.APPLICATION_JSON)
-    public Long postTrail(@PathVariable("userId") Long userId, @PathVariable("dutyId") Long dutyId, @PathVariable("status") String status) {
+    public Long postTrail(@PathVariable("userId") Long userId, @PathVariable("dutyId") Long dutyId, @PathVariable("status") String status) throws SQLException {
         return this.trailDAO.postTrail(userId, dutyId, Status.get(status));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/trail/{dutyId}", produces = MediaType.APPLICATION_JSON)
-    public ArrayList<Trail> getTrail(@PathVariable("dutyId") Long dutyId){
+    public ArrayList<Trail> getTrail(@PathVariable("dutyId") Long dutyId) throws SQLException {
         return this.trailDAO.getTrail(dutyId);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/trail/{dutyId}", produces = MediaType.APPLICATION_JSON)
-    public Long delete(@PathVariable("dutyId") Long dutyId){
+    public Long delete(@PathVariable("dutyId") Long dutyId) throws SQLException {
         return this.trailDAO.deleteTrail(dutyId);
     }
 

@@ -9,14 +9,16 @@ import java.sql.*;
 import java.util.ArrayList;
 
 @Component
-public class TrailDAO extends BaseDAO{
+public class TrailDAO extends BaseDAO {
 
     @Value("${sql.insert.trail}") private String postTrail;
     @Value("${sql.select.trail}") private String getTrail;
     @Value("${sql.delete.trail}") private String deleteTrail;
 
-    public Long postTrail(Long userId, Long dutyId, Status status){
-        PreparedStatement ps = null;
+    private PreparedStatement ps = null;
+    private ResultSet resultSet = null;
+
+    public Long postTrail(Long userId, Long dutyId, Status status) throws SQLException {
 
         try {
             ps = super.con.prepareStatement(postTrail);
@@ -28,20 +30,14 @@ public class TrailDAO extends BaseDAO{
                 return dutyId;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         } finally {
-            try {
-                super.commitAndCloseAll(ps, null);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            super.commitAndCloseAll(ps, null);
         }
         return -1L;
     }
 
-    public ArrayList<Trail> getTrail(Long dutyId){
-        PreparedStatement ps = null;
-        ResultSet resultSet = null;
+    public ArrayList<Trail> getTrail(Long dutyId) throws SQLException {
         ArrayList<Trail> trails = new ArrayList<>();
 
         try {
@@ -52,23 +48,16 @@ public class TrailDAO extends BaseDAO{
             while (resultSet.next()) {
                 trails.add(new Trail(resultSet.getLong("user_id"), resultSet.getString("status"), resultSet.getTimestamp("change_date")));
             }
-            return trails;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         } finally {
-            try {
-                super.commitAndCloseAll(ps, resultSet);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            super.commitAndCloseAll(ps, resultSet);
         }
         return trails;
     }
 
-    public Long deleteTrail(Long dutyId){
-        PreparedStatement ps = null;
-
+    public Long deleteTrail(Long dutyId) throws SQLException {
         try {
             ps = super.con.prepareStatement(deleteTrail);
             ps.setLong(1, dutyId);
@@ -77,13 +66,9 @@ public class TrailDAO extends BaseDAO{
                 return dutyId;
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw e;
         } finally {
-            try {
-                super.commitAndCloseAll(ps, null);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            super.commitAndCloseAll(ps, null);
         }
         return -1L;
     }

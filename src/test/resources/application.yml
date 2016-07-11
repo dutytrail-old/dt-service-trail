@@ -1,3 +1,6 @@
+server:
+  port: 9201
+
 ping:
   alive: Config properties loaded from LOCAL profile
 
@@ -12,8 +15,8 @@ db:
 # SQL
 sql:
   insert:
-    trail: insert into dt_trail_test(id, user_id, duty_id, status) values (nextval('dt_s_trail_id'), ?, ?, ?)
+    trail: insert into dt_trail(id, user_id, duty_id, status) values (nextval('dt_s_trail_id'), ?, ?, ?)
   select:
-    trail: select user_id, status, change_date from dt_trail_test t where t.duty_id = ?
+    trail: select user_id, status, change_date from dt_trail t where t.duty_id = ?
   delete:
-    trail: delete from public.dt_trail_test where duty_id = ?
+    trail: delete from public.dt_trail where duty_id = ?
