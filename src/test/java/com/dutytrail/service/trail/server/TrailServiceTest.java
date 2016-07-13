@@ -74,12 +74,4 @@ public class TrailServiceTest {
         Assert.assertNotNull(trails.get(0).getTimestamp());
     }
 
-    @Test
-    public void deleteTest() throws SQLException {
-        when(trailDAO.deleteTrail(Mockito.anyLong())).thenReturn(2L);
-        Long deleteResponse = this.trailService.delete(1L);
-        Assert.assertNotNull(deleteResponse);
-        Assert.assertTrue(2L == deleteResponse);
-    }
-
 }

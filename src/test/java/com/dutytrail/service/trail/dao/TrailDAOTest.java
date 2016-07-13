@@ -87,24 +87,4 @@ public class TrailDAOTest {
         this.trailDAO.getTrail(1L);
     }
 
-    @Test
-    public void deleteTrailTest() throws SQLException {
-        Long deleteTrailSQLResponse = this.trailDAO.deleteTrail(1L);
-        Assert.assertNotNull(deleteTrailSQLResponse);
-        Assert.assertTrue(1L == deleteTrailSQLResponse);
-    }
-
-    @Test
-    public void deleteTrailFailTest() throws SQLException {
-        when(this.mockedPreparedStatement.executeUpdate()).thenReturn(0);
-        Long deleteTrailSQLResponse = this.trailDAO.deleteTrail(1L);
-        Assert.assertNotNull(deleteTrailSQLResponse);
-        Assert.assertTrue(-1L == deleteTrailSQLResponse);
-    }
-
-    @Test(expected = SQLException.class)
-    public void deleteTrailExceptionTest() throws SQLException {
-        when(this.mockedPreparedStatement.executeUpdate()).thenThrow(new SQLException());
-        this.trailDAO.deleteTrail(1L);
-    }
 }
