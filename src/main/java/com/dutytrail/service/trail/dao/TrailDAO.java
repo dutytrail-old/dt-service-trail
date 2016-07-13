@@ -32,7 +32,7 @@ public class TrailDAO extends BaseDAO {
         } catch (SQLException e) {
             throw e;
         } finally {
-            super.commitAndCloseAll(ps, null);
+            super.commitAndCloseAll(ps, resultSet);
         }
         return -1L;
     }
@@ -68,7 +68,7 @@ public class TrailDAO extends BaseDAO {
         } catch (SQLException e) {
             throw e;
         } finally {
-            super.commitAndCloseAll(ps, null);
+            super.commitAndCloseAll(ps, resultSet);
         }
         return -1L;
     }
