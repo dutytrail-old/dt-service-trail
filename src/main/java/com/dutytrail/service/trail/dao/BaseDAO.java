@@ -25,8 +25,12 @@ class BaseDAO {
     }
 
     void commitAndCloseAll(PreparedStatement ps, ResultSet resultSet) throws SQLException {
-        ps.close();
-        resultSet.close();
+        if(ps!=null) {
+            ps.close();
+        }
+        if(resultSet!=null){
+            resultSet.close();
+        }
         con.commit();
     }
 
